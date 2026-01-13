@@ -11,5 +11,7 @@ jobs:
         run: docker tag node-gh-actions node-gh-actions:${GITHUB_SHA:0:7}
       - name: Check Docker image
         run: docker images node-gh-actions  
+      - name: Prune Docker images
+        run: docker image prune -f  
       - name: Push the Docker image
         run: echo "Skipping push step"
