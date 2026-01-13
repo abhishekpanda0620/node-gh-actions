@@ -1,0 +1,13 @@
+name: node-app-build
+on: [push]
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build -t node-gh-actions .
+      - name: Tag the Docker image
+        run: docker tag node-gh-actions node-gh-actions:${GITHUB_SHA:0:7}
+      - name: Push the Docker image
+        run: echo "Skipping push step"
